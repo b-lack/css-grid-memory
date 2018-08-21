@@ -1,0 +1,110 @@
+html, body{
+	height: 100%;
+	margin: 0;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+body{
+	box-sizing: border-box;
+}
+.wrapper{
+  	padding-bottom: 40px;
+  	box-sizing: border-box;
+
+  	height: 100%;
+}
+.container{
+	display: grid;
+
+	grid-template-columns: repeat(5, 20%);
+  	grid-template-rows: auto;
+
+  	justify-content: space-evenly;
+  	align-content: space-evenly;
+
+  	width: 100%;
+  	height: 100%;
+  	
+  	box-sizing: border-box;
+
+}
+.item{
+	justify-self: center;
+	align-self: center;
+}
+.item:hover, .item.active{
+	top:-5px;
+	left: -5px;
+	z-index: 1;
+}
+
+/*GAME STYLES*/
+
+.item{
+
+	
+
+	position:relative;
+
+	transition: top .2s ease-in-out, left .2s ease-in-out;
+	top:0;
+	left: 0;
+	
+
+	cursor: pointer;
+}
+.card{
+	perspective: 1000px;
+
+}
+.item.active .card .flipper{
+	transform: rotateY(180deg);
+}
+.flipper{
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+.card, .front, .back{
+	width: 150px;
+	height: 150px;
+}
+.front, .back {
+	box-shadow: 0px 0px 3px rgba(0,0,0,.5);
+	transition: box-shadow .2s ease-in-out;
+
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	border-radius: 5px;
+}
+.item.active .front, .item.active .back, .item:hover .front, .item:hover .back {
+	box-shadow: 6px 6px 6px rgba(0,0,0,.5);
+}
+.front{
+	background: linear-gradient(135deg, #4c1054 0%,#d700ea 100%);
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+.back {
+	color: #333;
+	background-color: #eee;
+	transform: rotateY(180deg);
+	text-align: center;
+	transition: background-color .2s linear 0.5s;
+}
+.success .back {
+	background-color: #4aa844;
+}
+.error .back {
+	background-color: #e2472e;
+}
+.back i{
+	font-size:50px;
+	line-height: 80px;
+	height: 80px;
+}
